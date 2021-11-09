@@ -356,26 +356,7 @@ _strategy              SmaCross(n1=10, n2=20)</samp></pre>
                 </div>
             </div>
         </div>
-        <div class="snippet snippet-plot has-text-centered" style="background: white">
-            <iframe data-src="example.html" id="iframe" loading="lazy"
-                    style="width:100%; margin-top:1em; height:566px; overflow:hidden;"
-                    data-ga-on="wheel" data-ga-event-category="iframe" data-ga-event-action="wheel"></iframe>
-            <noscript>JavaScript is required.</noscript>
-            <script>
-                var iframe = document.getElementById('iframe');
-                if (! window.IntersectionObserver) {
-                    window.addEventListener('load', () => { iframe.src = iframe.dataset.src; });
-                } else {
-                    (new IntersectionObserver((entries, observer) => {
-                        if (entries[0].intersectionRatio === 0)
-                            return;
-                        iframe.src = iframe.dataset.src;
-                        observer.disconnect();
-                    }, {threshold: .01})).observe(iframe);
-                }
-            </script>
-        </div>
-
+     
         <div class="columns content is-centered is-vcentered has-text-centered" style="margin-top:2em;">
             <p class="column is-4">
                 Find <b>better examples</b>, including executable Jupyter notebooks, in the
