@@ -1,9 +1,468 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="https://schema.org/SoftwareApplication">
 <head>
-<meta name="robots" content="noindex,noarchive,follow">
-<meta http-equiv="refresh" content="0; url=backtesting.py/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Backtesting.py - Backtest trading strategies in Python</title>
+    <meta name="description" content="Fast Python framework for backtesting trading and investment strategies on historical candlestick data." itemprop="description">
+
+    <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.css" integrity="sha512-8bKh9RpTTQf+EOCSqu/jiAhcUlb5BpcWy0eXEijSX7yode10sZLU3dLBcmoaj15chLpVb+/TY0Z6SL//d4lVAQ==" crossorigin>
+    <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin>
+    <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" integrity="sha512-7QTQ5Qsc/IL1k8UU2bkNFjpKTfwnvGuPYE6fzm6yeneWTEGiA3zspgjcTsSgln9m0cn3MgyE7EnDNkF1bB/uCw==" crossorigin>
+    <link rel="preconnect" href="https://cdn.bokeh.org">
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha512-lnOllyZZlRk/gQIyjS3+h+LUy54uyM4aGq2zbGc82KTvBlp/fodSpdh/pywPztpU9zUqHcJr+jP+a1zLa9oCJw==" crossorigin
+            onload="hljs.configure({languages:['python']}); hljs.initHighlightingOnLoad()"></script>
+
+    <style>
+        blockquote.card p:first-child:before { content: '“' }
+        blockquote.card p:first-child:after  { content: '”' }
+        blockquote.card p:last-child:before  { content: '— ' }
+        blockquote.card p:first-child {font-style: italic}
+
+        .snippet {
+            border: 2px solid gold;
+            position: relative;
+            overflow: visible;
+            max-width: 100%;
+            margin:0 auto;
+        }
+        .snippet:before {
+            content: 'Snippet';
+            position: absolute;
+            bottom: 100%;
+            left: -2px;
+            font: bold 8px sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: gold;
+            padding: 4px 6px 2px 6px;
+        }
+        .snippet-output:before {content: 'Output'}
+        .snippet-plot:before {content: 'Plot'}
+
+        .nobr {white-space: nowrap}
+
+        pre,
+        pre code {background: #fcfcfc !important}
+
+        @media screen and (max-width: 1473px) {
+            .column.mine-is-full-until-fullhd {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <style>
+        section > ins.adsbygoogle {margin: 1em 0}
+    </style>
+
+    <link rel="icon" type="image/png" href="logo.png" sizes="512x512" itemprop="image logo">
+    <link rel="canonical home" href="https://alexandercervantes.github.io/" itemprop="url">
+
+    <link href="https://github.com/alexandercervantes/backtesting.py" itemprop="sameAs">
+    <link href="https://pypi.org/project/Backtesting/" itemprop="sameAs">
+    <meta itemprop="isAccessibleForFree" content="True">
+    <meta itemprop="operatingSystem" content="Linux, macOS, Windows">
+    <meta itemprop="applicationCategory" content="FinanceApplication">
 </head>
 <body>
-Redirecting to <a href="./backtesting.py/">Backtesting.py</a> ...
+
+
+<div itemprop="offers" itemscope itemtype="http://schema.org/Offer"><meta itemprop="price" content="0"><meta itemprop="priceCurrency" content="BTC"></div>
+<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"><meta itemprop="reviewCount" content="1"><meta itemprop="ratingValue" content="4.2"></div>
+
+
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+                <div class="image" style="width:200px; margin-right:3em"><img alt="" src="logo.png"></div>
+                <div>
+                    <h1 class="title is-1">
+                        Backtesting<span style="color:darkgreen;white-space:nowrap">.py</span>
+                    </h1>
+                    <h2 class="subtitle is-4">
+                        Backtest trading strategies in Python
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <p>
+                Does it seem like you had missed getting rich during the recent crypto craze?
+                Fret not, the international financial markets continue their move rightwards
+                every day. You still have your chance.
+                But successful traders all agree emotions have no place in trading —
+                if you are ever to enjoy a fortune attained by your trading, better
+                first make sure your strategy or system is well-tested and working reliably
+                to consistent profit.
+                Mechanical or algorithmic trading, they call it. They'll usually recommend
+                signing up with a broker and trading on a demo account for a few months …
+                But you know better. You know some programming.
+            </p>
+
+            <div class="columns container is-centered" style="margin-top:2em; margin-bottom:2em;">
+                <blockquote class="media is-half-desktop is-two-thirds-tablet 1is-one-third-widescreen">
+                    <div class="media-left"><span class="icon is-medium"><i class="fa fa-2x fa-quote-left"></i></span></div>
+                    <div class="media-content">
+                        <p>
+                            It is far better to foresee even without certainty than not to foresee at all.
+                        </p>
+                        <i class="is-pulled-right">— Henri Poincare</i>
+                    </div>
+                </blockquote>
+            </div>
+
+            <p>
+                <b><cite itemprop="name">Backtesting.py</cite></b> is a Python framework for inferring viability
+                of trading strategies on historical (past) data.
+                Of course, past performance is not indicative of future results,
+                but a strategy that proves itself resilient in a multitude of
+                market conditions can, with a little luck, remain just as reliable in the future.
+                Improved upon the vision of
+                <a href="https://www.backtrader.com/" itemprop="isBasedOn" rel="nofollow noreferrer noopener"><cite>Backtrader</cite></a>,
+                and by all means surpassingly comparable to other accessible alternatives,
+                <cite>Backtesting.py</cite> is lightweight, fast, user-friendly, intuitive,
+                interactive, intelligent and, hopefully, future-proof.
+
+                It is also documented well, including a handful of tutorials.
+            </p>
+        </div>
+
+        <div class="columns" style="margin-top:3em" itemprop="featureList">
+            <ul class="column">
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-hand-holding-usd"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Compatible with forex, stocks, <abbr title="contract for difference">CFD</abbr>s, futures ...</b></p>
+                        <p>Backtest any financial instrument for which you have access to historical candlestick data.</p>
+                    </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-stopwatch"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Blazing fast, convenient</b></p>
+                        <p>Built on top of cutting-edge ecosystem libraries (i.e. Pandas, NumPy, Bokeh) for maximum usability.</p>
+                    </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-file-alt"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Small, clean API</b></p>
+                        <p>The API reference is easy to wrap your head around and fits on a single page.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="column">
+                <li class="media">
+                   <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-swatchbook"></i></span></div>
+                   <div class="media-content">
+                       <p><b>Technical indicator library agnostic</b></p>
+                       <p>
+                           Compatible with any sensible technical analysis library, such as
+                           <a href="https://mrjbq7.github.io/ta-lib/" class="nobr"><cite>TA-Lib</cite></a> or
+                           <a href="https://tulipindicators.org/"><cite>Tulip</cite></a>.
+                       </p>
+                   </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-search-dollar"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Built-in optimizer</b></p>
+                        <p>Test hundreds of strategy variants in mere seconds, resulting in heatmaps you can interpret at a glance.</p>
+                    </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="far fa-2x fa-lightbulb"></i></span></div>
+                    <div class="media-content">
+                        <p><b>High-level API</b></p>
+                        <p>Think market timing, swing trading, money management, stop-loss and take-profit prices, leverage, machine learning ...</p>
+                    </div>
+                </li>
+            </ul>
+            <ul class="column">
+                <li class="media">
+                   <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-chart-area"></i></span></div>
+                   <div class="media-content">
+                       <p><b>Interactive visualization</b></p>
+                       <p>Simulated trading results in telling interactive charts you can zoom into. See <a href="#example"><em>Example</em></a>.</p>
+                   </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-network-wired"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Vectorized or event-based backtesting</b></p>
+                        <p>Signal-driven or streaming, model your strategy enjoying the flexibility of both approaches.</p>
+                    </div>
+                </li>
+                <li class="media">
+                    <div class="media-left"><span class="icon is-medium"><i class="fas fa-2x fa-layer-group"></i></span></div>
+                    <div class="media-content">
+                        <p><b>Composable strategies</b></p>
+                        <p>Contains a library of predefined utilities and general-purpose strategies that are made to stack.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h3 class="title has-text-centered">
+            Download
+        </h3>
+
+        <div class="columns is-multiline is-centered is-vcentered">
+            <div class="column is-5 is-4-widescreen">
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-dark" readonly value="pip3 install backtesting"
+                           style="background:#ffd; cursor:pointer; caret-color:transparent; font-family:monospace;"
+                           onclick="getSelection().removeAllRanges(); this.select();"
+                           data-ga-on="click,auxclick,contextmenu" data-ga-event-category="cmdline" data-ga-event-action="select">
+                    <span class="icon is-left has-text-grey" ><i class="fa fa-dollar-sign"></i></span>
+                    <span class="icon is-right has-text-grey"><i class="fa fa-download"></i></span>
+                </div>
+            </div>
+
+            <div class="column is-narrow has-text-centered buttons">
+                <a class="button is-success is-large"
+                   title="Backtesting on PyPI" href="https://pypi.org/project/backtesting/"
+                   itemprop="downloadUrl"
+                   data-ga-event-category="PyPI">
+                    <span class="icon"><i class="fa fa-download"></i></span>
+                    <span>PyPI</span>
+                </a>
+                <a class="button is-large has-background-white-ter"
+                   title="Backtesting.py on GitHub" href="https://github.com/kernc/backtesting.py"
+                   data-ga-event-category="GitHub">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>GitHub</span>
+                </a>
+                <a class="button is-large is-link" title="Backtesting.py documentation" href="doc/backtesting/">
+                    <span class="icon"><i class="fa fa-file-alt"></i></span>
+                    <span>Docs</span>
+                </a>
+            </div>
+        </div>
+
+        <p class="has-text-centered">
+            <span class="icon" ><i class="fas fa-question-circle"></i></span>
+            <cite>Backtesting.py</cite> works with <cite>Python 3</cite>.
+            You need to know some <a href="https://www.python.org" itemprop="softwareRequirements">Python</a> to effectively use this software.
+        </p>
+    </div>
+
+</section>
+
+<section class="section has-background-light">
+    <div class="container">
+        <h3 id="example" class="title has-text-centered">
+            Example
+        </h3>
+
+        <div class="columns is-multiline is-centered">
+            <div class="column mine-is-full-until-fullhd content">
+                <p>
+                    The example shows a simple, unoptimized <b>moving average cross-over</b>
+                    strategy. It's a common introductory strategy and a pretty decent strategy
+                    overall, provided the market isn't whipsawing sideways.
+                </p>
+                <p>
+                    We begin with <b><span class="nobr">10,000</span> units of currency</b> in cash,
+                    realistic <b><span class="nobr">0.2%</span> broker commission</b>, and we
+                    trade through <b>9 years</b> worth of
+                    <b><span class="nobr">Alphabet Inc.</span></b> stock.
+                </p>
+                <p>
+                    Whenever the fast, 10-period simple moving average of closing prices crosses
+                    <b>above</b> the slower, 20-period moving average, we go <b>long</b>,
+                    buying as many stocks as we can afford.
+                    When it crosses <b>below</b>, we close our long position and go <b>short</b>
+                    (assuming the underlying instrument is actually a
+                    <abbr title="contract for difference">CFD</abbr> and can be shorted).
+                </p>
+                <p>
+                    We record most significant statistics this simple system produces on our data,
+                    and we show a plot for further manual inspection.
+                </p>
+            </div>
+            <div class="column is-narrow is-flex">
+                <div class="snippet is-flex">
+                    <pre style="padding:.5em"><code class="python">from backtesting import Backtest, Strategy
+from backtesting.lib import crossover
+
+from backtesting.test import SMA, GOOG
+
+
+class SmaCross(Strategy):
+    n1 = 10
+    n2 = 20
+
+    def init(self):
+        close = self.data.Close
+        self.sma1 = self.I(SMA, close, self.n1)
+        self.sma2 = self.I(SMA, close, self.n2)
+
+    def next(self):
+        if crossover(self.sma1, self.sma2):
+            self.buy()
+        elif crossover(self.sma2, self.sma1):
+            self.sell()
+
+
+bt = Backtest(GOOG, SmaCross,
+              cash=10000, commission=.002,
+              exclusive_orders=True)
+
+output = bt.run()
+bt.plot()</code></pre>
+                </div>
+            </div>
+            <div class="column is-narrow is-flex">
+                <div class="snippet snippet-output is-flex">
+                    <pre style="padding:1em"><samp>Start                     2004-08-19 00:00:00
+End                       2013-03-01 00:00:00
+Duration                   3116 days 00:00:00
+Exposure Time [%]                       94.27
+Equity Final [$]                     68935.12
+Equity Peak [$]                      68991.22
+Return [%]                             589.35
+Buy &amp; Hold Return [%]                  703.46
+Return (Ann.) [%]                       25.42
+Volatility (Ann.) [%]                   38.43
+Sharpe Ratio                             0.66
+Sortino Ratio                            1.30
+Calmar Ratio                             0.77
+Max. Drawdown [%]                      -33.08
+Avg. Drawdown [%]                       -5.58
+Max. Drawdown Duration      688 days 00:00:00
+Avg. Drawdown Duration       41 days 00:00:00
+# Trades                                   93
+Win Rate [%]                            53.76
+Best Trade [%]                          57.12
+Worst Trade [%]                        -16.63
+Avg. Trade [%]                           1.96
+Max. Trade Duration         121 days 00:00:00
+Avg. Trade Duration          32 days 00:00:00
+Profit Factor                            2.13
+Expectancy [%]                           6.91
+SQN                                      1.78
+_strategy              SmaCross(n1=10, n2=20)</samp></pre>
+                </div>
+            </div>
+        </div>
+        <div class="snippet snippet-plot has-text-centered" style="background: white">
+            <iframe data-src="example.html" id="iframe" loading="lazy"
+                    style="width:100%; margin-top:1em; height:566px; overflow:hidden;"
+                    data-ga-on="wheel" data-ga-event-category="iframe" data-ga-event-action="wheel"></iframe>
+            <noscript>JavaScript is required.</noscript>
+            <script>
+                var iframe = document.getElementById('iframe');
+                if (! window.IntersectionObserver) {
+                    window.addEventListener('load', () => { iframe.src = iframe.dataset.src; });
+                } else {
+                    (new IntersectionObserver((entries, observer) => {
+                        if (entries[0].intersectionRatio === 0)
+                            return;
+                        iframe.src = iframe.dataset.src;
+                        observer.disconnect();
+                    }, {threshold: .01})).observe(iframe);
+                }
+            </script>
+        </div>
+
+        <div class="columns content is-centered is-vcentered has-text-centered" style="margin-top:2em;">
+            <p class="column is-4">
+                Find <b>better examples</b>, including executable Jupyter notebooks, in the
+                project documentation.
+            </p>
+            <div class="column is-narrow">
+                <a class="button is-large is-link" title="Backtesting.py documentation" href="doc/backtesting/"
+                   itemprop="softwareHelp mainEntityOfPage">
+                    <span class="icon"><i class="fa fa-file-alt"></i></span>
+                    <span>Documentation</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ins class="adsbygoogle has-text-centered is-block" data-ad-client="ca-pub-2900001379782823" data-ad-slot="1430886616" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h3 class="title is-narrow has-text-centered">
+            What Users are Saying
+        </h3>
+
+        <div class="columns">
+            <div class="column is-3">
+                <blockquote class="card">
+                    <div class="card-content content">
+                        <p class="is-size-5">The proof of [this] program's value is its existence.</p>
+                        <p class="is-size-6 has-text-right">Alan Perlis</p>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="column is-5">
+                <blockquote class="card">
+                    <div class="card-content content">
+                        <p class="is-size-5">Some things are so unexpected that no one is prepared for them.</p>
+                        <p class="is-size-6 has-text-right">Leo Rosten</p>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="column is-3">
+                <blockquote class="card">
+                    <div class="card-content content">
+                        <p class="is-size-5">When all else fails, read the instructions.</p>
+                        <p class="is-size-6 has-text-right">Cahn</p>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-7">
+                <blockquote class="card">
+                    <div class="card-content content">
+                        <p class="is-size-5">The financial markets generally are unpredictable. So that one has to have different scenarios … The idea that you can actually predict what's going to happen contradicts my way of looking at the market.</p>
+                        <p class="is-size-6 has-text-right">George Soros</p>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="column is-4">
+                <blockquote class="card">
+                    <div class="card-content content">
+                        <p class="is-size-5">If you don’t find a way to make money while you sleep, you will work until you die.</p>
+                        <p class="is-size-6 has-text-right">Warren Buffet</p>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <ins class="adsbygoogle has-text-centered is-block" data-ad-client="ca-pub-2900001379782823" data-ad-slot="1430886616" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</section>
+
+<footer class="footer" style="margin-top:3em; padding-top:4rem; clip-path:polygon(0 0, 100% 10%, 100% 100%, 0 100%);">
+    <div class="container is-fluid has-text-grey-lighter">
+        <span class="is-pulled-left">卐</span>
+        <span class="is-pulled-right">卍</span>
+    </div>
+    <div class="container">
+        <blockquote class="content is-clearfix has-text-centered has-text-grey">
+            <p>A good forecaster is not smarter than everyone else, he merely has his ignorance better organised.</p>
+        </blockquote>
+    </div>
+</footer>
+
+<a href="https://github.com/alexandercervantes/backtesting.py" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 </body>
 </html>
